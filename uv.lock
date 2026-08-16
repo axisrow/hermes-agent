@@ -8,7 +8,7 @@ resolution-markers = [
 ]
 
 [options]
-exclude-newer = "0001-01-01T00:00:00Z" # This has no effect and is included for backwards compatibility when using relative exclude-newer values.
+exclude-newer = "2026-08-02T17:26:30.540357Z"
 exclude-newer-span = "P14D"
 
 [options.exclude-newer-package]
@@ -1568,7 +1568,7 @@ wheels = [
 ]
 
 [[package]]
-name = "hermes-agent"
+name = "hermes-agent-axisrow"
 version = "0.20.1"
 source = { editable = "." }
 dependencies = [
@@ -1843,25 +1843,25 @@ requires-dist = [
     { name = "google-auth", marker = "extra == 'vertex'", specifier = "==2.55.1" },
     { name = "google-auth-httplib2", marker = "extra == 'google'", specifier = "==0.3.1" },
     { name = "google-auth-oauthlib", marker = "extra == 'google'", specifier = "==1.3.1" },
-    { name = "hermes-agent", extras = ["acp"], marker = "extra == 'all'" },
-    { name = "hermes-agent", extras = ["acp"], marker = "extra == 'termux'" },
-    { name = "hermes-agent", extras = ["cron"], marker = "extra == 'all'" },
-    { name = "hermes-agent", extras = ["cron"], marker = "extra == 'termux'" },
-    { name = "hermes-agent", extras = ["google"], marker = "extra == 'all'" },
-    { name = "hermes-agent", extras = ["google"], marker = "extra == 'termux-all'" },
-    { name = "hermes-agent", extras = ["homeassistant"], marker = "extra == 'all'" },
-    { name = "hermes-agent", extras = ["homeassistant"], marker = "extra == 'termux-all'" },
-    { name = "hermes-agent", extras = ["honcho"], marker = "extra == 'termux'" },
-    { name = "hermes-agent", extras = ["mcp"], marker = "extra == 'all'" },
-    { name = "hermes-agent", extras = ["mcp"], marker = "extra == 'termux'" },
-    { name = "hermes-agent", extras = ["pty"], marker = "extra == 'all'" },
-    { name = "hermes-agent", extras = ["pty"], marker = "extra == 'termux-all'" },
-    { name = "hermes-agent", extras = ["sms"], marker = "extra == 'all'" },
-    { name = "hermes-agent", extras = ["sms"], marker = "extra == 'termux-all'" },
-    { name = "hermes-agent", extras = ["termux"], marker = "extra == 'termux-all'" },
-    { name = "hermes-agent", extras = ["web"], marker = "extra == 'all'" },
-    { name = "hermes-agent", extras = ["web"], marker = "extra == 'termux-all'" },
-    { name = "hermes-agent", extras = ["youtube"], marker = "extra == 'all'" },
+    { name = "hermes-agent-axisrow", extras = ["acp"], marker = "extra == 'all'" },
+    { name = "hermes-agent-axisrow", extras = ["acp"], marker = "extra == 'termux'" },
+    { name = "hermes-agent-axisrow", extras = ["cron"], marker = "extra == 'all'" },
+    { name = "hermes-agent-axisrow", extras = ["cron"], marker = "extra == 'termux'" },
+    { name = "hermes-agent-axisrow", extras = ["google"], marker = "extra == 'all'" },
+    { name = "hermes-agent-axisrow", extras = ["google"], marker = "extra == 'termux-all'" },
+    { name = "hermes-agent-axisrow", extras = ["homeassistant"], marker = "extra == 'all'" },
+    { name = "hermes-agent-axisrow", extras = ["homeassistant"], marker = "extra == 'termux-all'" },
+    { name = "hermes-agent-axisrow", extras = ["honcho"], marker = "extra == 'termux'" },
+    { name = "hermes-agent-axisrow", extras = ["mcp"], marker = "extra == 'all'" },
+    { name = "hermes-agent-axisrow", extras = ["mcp"], marker = "extra == 'termux'" },
+    { name = "hermes-agent-axisrow", extras = ["pty"], marker = "extra == 'all'" },
+    { name = "hermes-agent-axisrow", extras = ["pty"], marker = "extra == 'termux-all'" },
+    { name = "hermes-agent-axisrow", extras = ["sms"], marker = "extra == 'all'" },
+    { name = "hermes-agent-axisrow", extras = ["sms"], marker = "extra == 'termux-all'" },
+    { name = "hermes-agent-axisrow", extras = ["termux"], marker = "extra == 'termux-all'" },
+    { name = "hermes-agent-axisrow", extras = ["web"], marker = "extra == 'all'" },
+    { name = "hermes-agent-axisrow", extras = ["web"], marker = "extra == 'termux-all'" },
+    { name = "hermes-agent-axisrow", extras = ["youtube"], marker = "extra == 'all'" },
     { name = "hindsight-client", marker = "extra == 'hindsight'", specifier = "==0.6.1" },
     { name = "honcho-ai", marker = "extra == 'honcho'", specifier = "==2.2.0" },
     { name = "httplib2", marker = "extra == 'google'", specifier = "==0.32.0" },
