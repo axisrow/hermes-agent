@@ -22,7 +22,7 @@ most often, and every edit there is a merge conflict waiting to happen.
 Usage
 -----
     git fetch upstream main
-    git checkout -B fork-main upstream/main     # take upstream wholesale
+    git checkout -B main upstream/main          # take upstream wholesale
     python3 scripts/apply_fork_patches.py       # re-apply fork identity
     uv lock && git commit -am "fork: resync with upstream"
 

@@ -21,7 +21,7 @@
 providers, utils, cli). Проверено: обычный utils.py рядом с вашим кодом
 ломает импорт Hermes. Поэтому по умолчанию ставьте его ИЗОЛИРОВАННО:
 
-    uv tool install git+https://github.com/axisrow/hermes-agent@fork-main
+    uv tool install git+https://github.com/axisrow/hermes-agent@main
 
 и вызывайте как внешний процесс (`hermesx-agent`). Прямой импорт, как в
 этом файле, — только если в проекте нет своих модулей с такими именами.
