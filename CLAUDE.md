@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A **repack of [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** (the self-improving AI agent). This is not a fork in the usual sense — **no logic is changed anywhere**. The entire delta is a rename (distribution name, self-referential extras, console scripts) plus a few fork-only files. The bulk of the code (agent loop, tools, gateway, CLI, TUI) is upstream Hermes and is documented exhaustively in **`AGENTS.md`** — read that file for the deep architecture (AIAgent loop, tool-discovery chain, CLI/TUI/gateway, skills, plugins, config). This file covers only the fork-specific delta.
 
-The fork's purpose: install Hermes as a **library** (`hermes-agent-axisrow`) and drive it from consumer projects via a thin wrapper, with two interchangeable auth paths (ChatGPT/Codex subscription, or a metered `OPENAI_API_KEY`).
+The fork's purpose: install Hermes as a **library** (`hermes-agent-axisrow`) and drive it from consumer projects via a thin wrapper, with two interchangeable auth paths (ChatGPT/Codex subscription, or a metered `OPENAI_API_KEY`). Published on PyPI: https://pypi.org/project/hermes-agent-axisrow/
 
 **Design rule: never edit upstream's source or docs.** Upstream lands ~100 commits/day and rewrites exactly those files, so every edit there is a merge conflict on the next resync. The fork keeps `[all]` as upstream ships it (which is why `hermes_cli/main.py`, defaulting its install group to `"all"`, needs no patch) and confines the delta to `pyproject.toml` + files upstream doesn't have.
 
