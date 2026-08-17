@@ -41,6 +41,13 @@ The branch is **recreated, not merged**, and the whole delta is derived from wha
 
 **Releases:** build from upstream *tags*, not from the moving `main`, or releases aren't reproducible.
 
+**Versioning:** `pyproject.toml`'s `version` is upstream's own and gets clobbered on every resync (`main` is recreated from upstream, not merged), so it is never the fork's release number. Instead, a git tag `vX.Y.Z[.N]` on this repo is the single source of truth — `N` is a build counter for repackaging the same upstream version (e.g. `v0.20.1.1`, then `v0.20.1.2` for a second repack of `0.20.1`). Both release paths patch `pyproject.toml`'s version from the tag right before building, and never commit that edit:
+
+- **CI (primary):** `.github/workflows/publish-fork.yml` — OIDC trusted publishing, triggered by pushing a `v*` tag. Requires a Trusted Publisher configured on PyPI for this repo/workflow/environment (`pypi`) once.
+- **Local (fallback):** `scripts/release_pypi.sh {testpypi|pypi|all}` — the same token-based pattern used across the other axisrow projects. Reads `TWINE_USERNAME`/`TEST_PYPI_TOKEN`/`PYPI_TOKEN` from a git-ignored `.env`, refuses to run unless `HEAD` is tagged, builds with `python3 -m build --no-isolation`, checks with `twine check`, uploads with `twine upload --skip-existing`.
+
+Tag first (`git tag vX.Y.Z.N && git push origin vX.Y.Z.N`), then either path picks up the version automatically.
+
 ## The consumer wrapper
 
 `scripts/fork_client_example.py` is the fork's main deliverable. It's meant to be **copied into a consumer project** (not imported from here) and hides the difference between the two access paths:
