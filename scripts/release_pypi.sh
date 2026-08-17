@@ -102,6 +102,7 @@ restore_pyproject() {
 
 build_artifacts() {
   require_command python3
+  require_command uv
 
   local version
   version="$(resolve_version)"
@@ -117,11 +118,16 @@ build_artifacts() {
   echo "Building package"
   (
     cd "${ROOT_DIR}"
+    # uv build, not `python -m build --no-isolation`: build-system.requires
+    # pins setuptools==83.0.0 exactly, which --no-isolation cannot guarantee
+    # against whatever setuptools happens to be on PATH. uv build resolves
+    # an isolated build env matching the pin, same as the CI workflow.
+    #
     # setup.py blocks bdist_wheel/sdist outside a Nix build (upstream's own
     # escape hatch, see setup.py). Intentional here: package-data never
     # included skills/optional-skills/optional-mcps/locales (TUI/CLI-only
     # assets), so the resulting wheel is the intended minimal library.
-    HERMES_NIX_BUILD=1 python3 -m build --no-isolation
+    HERMES_NIX_BUILD=1 uv build --sdist --wheel
   )
 
   echo "Checking artifacts with twine"
