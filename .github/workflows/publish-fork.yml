@@ -56,6 +56,27 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e  # v6
 
+      - name: Set package version from tag
+        # pyproject.toml's `version` is upstream's own and gets clobbered on
+        # every resync (main is recreated from upstream, not merged) — it is
+        # never a reliable release number for this fork. The git tag is the
+        # only value that survives a resync, so it is the single source of
+        # truth: PyPI version = tag name with the leading "v" stripped.
+        run: |
+          TAG="${{ inputs.confirm_tag || github.ref_name }}"
+          VERSION="${TAG#v}"
+          python3 -c "
+          import re, sys
+          version = '$VERSION'
+          # PEP 440 release-segment check (X.Y.Z or X.Y.Z.N); reject anything
+          # with a stray v/local-version marker so a malformed tag fails the
+          # build instead of silently publishing garbage.
+          if not re.fullmatch(r'[0-9]+(\.[0-9]+)*', version):
+              sys.exit(f'tag {\"$TAG\"!r} does not yield a valid PEP 440 version: {version!r}')
+          "
+          sed -i "s/^version = \".*\"/version = \"$VERSION\"/" pyproject.toml
+          echo "package version -> $VERSION"
+
       - name: Guard against upstream self-references
         # A leftover `hermes-agent[extra]` in optional-dependencies would make
         # `pip install hermes-agent-axisrow[all]` pull NousResearch's package
