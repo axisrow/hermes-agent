@@ -94,7 +94,16 @@ jobs:
           "
 
       - name: Build wheel and sdist
-        run: uv build --sdist --wheel
+        # setup.py blocks bdist_wheel/sdist outside a Nix build (upstream
+        # dropped pip/PyPI distribution; see setup.py's own docstring). The
+        # env var is upstream's own escape hatch, normally set only by the
+        # Nix derivation. Here it is intentional: this fork's package-data
+        # (`[tool.setuptools.packages.find]`) never included skills/,
+        # optional-skills/, optional-mcps/, locales/ in the first place —
+        # those are TUI/CLI-only assets our library use case does not need
+        # — so the resulting wheel is exactly the intended minimal library,
+        # not an accidentally-incomplete one.
+        run: HERMES_NIX_BUILD=1 uv build --sdist --wheel
 
       - name: Upload distribution artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4

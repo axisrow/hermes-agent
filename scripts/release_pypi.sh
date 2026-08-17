@@ -117,7 +117,11 @@ build_artifacts() {
   echo "Building package"
   (
     cd "${ROOT_DIR}"
-    python3 -m build --no-isolation
+    # setup.py blocks bdist_wheel/sdist outside a Nix build (upstream's own
+    # escape hatch, see setup.py). Intentional here: package-data never
+    # included skills/optional-skills/optional-mcps/locales (TUI/CLI-only
+    # assets), so the resulting wheel is the intended minimal library.
+    HERMES_NIX_BUILD=1 python3 -m build --no-isolation
   )
 
   echo "Checking artifacts with twine"
