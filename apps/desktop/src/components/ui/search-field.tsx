@@ -61,8 +61,8 @@ export function SearchField({
         // container's flex min-width and the field bulldozes its siblings
         // instead of shrinking to fit its context.
         'inline-flex min-w-0 max-w-full items-center gap-1.5 border-b border-transparent px-0.5 transition-[color,border-color,opacity]',
-        // Recede until the user reaches for it.
-        !value && 'opacity-30 focus-within:opacity-100',
+        // Recede until the user reaches for it — but stay discoverable.
+        !value && 'opacity-40 focus-within:opacity-100',
         containerClassName
       )}
     >
