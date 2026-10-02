@@ -2021,7 +2021,7 @@ export interface Translations {
         toolsetGroupName: (key: string) => string
     bulkNoChange: string
     usageCount: (count: number | string) => string
-    provenance: Record<'agent' | 'bundled' | 'hub', string>
+    provenance: Record<'agent' | 'bundled' | 'hub' | 'plugin', string>
     emptyNoneFound: (noun: string) => string
     emptyNothingMatches: (query: string) => string
     emptyNoneAvailable: (noun: string) => string

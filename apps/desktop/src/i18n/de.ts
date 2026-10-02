@@ -2779,7 +2779,8 @@ export const de = defineLocale({
     provenance: {
       agent: 'Gelernt',
       bundled: 'Integriert',
-      hub: 'Hub'
+      hub: 'Hub',
+      plugin: 'Plugin'
     },
     emptyNoneFound: noun => `Kein ${noun} gefunden`,
     emptyNothingMatches: query => `Nichts passt zu “${query}”.`,
